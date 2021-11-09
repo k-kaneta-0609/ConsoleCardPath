@@ -33,7 +33,7 @@ namespace ConsoleCardPath
                 string line = Console.ReadLine();
                 for (int x = 1; x <= w; x++)
                 {
-                    cardPanel.First(map => map.Y == y && map.X == x).Chr = line.Split(' ')[x - 1];
+                    cardPanel.First(panel => panel.Y == y && panel.X == x).Chr = line.Split(' ')[x - 1];
                 }
             }
 
@@ -53,8 +53,8 @@ namespace ConsoleCardPath
             {
                 // 開始位置と終了位置のアルファベットチェック
                 bool ok = false;
-                string startChar = cardPanel.First(map => map.X == startList[i].X && map.Y == startList[i].Y).Chr;
-                string endChar = cardPanel.First(map => map.X == endList[i].X && map.Y == endList[i].Y).Chr;
+                string startChar = cardPanel.First(panel => panel.X == startList[i].X && panel.Y == startList[i].Y).Chr;
+                string endChar = cardPanel.First(panel => panel.X == endList[i].X && panel.Y == endList[i].Y).Chr;
                 if (startChar == endChar && startChar != "." && endChar != ".")
                 {
                     // 全てのX軸のルートを探索
@@ -106,7 +106,7 @@ namespace ConsoleCardPath
         /// <param name="start">X軸の開始位置</param>
         /// <param name="end">X軸の終了位置</param>
         /// <param name="y">Y軸の位置</param>
-        /// <param name="cardMap">カードパネル</param>
+        /// <param name="cardPanel">カードパネル</param>
         /// <param name="path">ルートを追加</param>
         static void AddPathX(int start, int end, int y, List<CardInfo> cardPanel, List<CardInfo> path)
         {
@@ -127,7 +127,7 @@ namespace ConsoleCardPath
             {
                 if (path.Any(p => p.X == x && p.Y == y) == false)
                 {
-                    path.Add(new CardInfo() { X = x, Y = y, Chr = cardPanel.First(map => map.X == x && map.Y == y).Chr });
+                    path.Add(new CardInfo() { X = x, Y = y, Chr = cardPanel.First(panel => panel.X == x && panel.Y == y).Chr });
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace ConsoleCardPath
         /// <param name="start">Y軸の開始位置</param>
         /// <param name="end">Y軸の終了位置</param>
         /// <param name="x">X軸の位置</param>
-        /// <param name="cardMap">カードパネル</param>
+        /// <param name="cardPanel">カードパネル</param>
         /// <param name="path">ルートを追加</param>
         static void AddPathY(int start, int end, int x, List<CardInfo> cardPanel, List<CardInfo> path)
         {
@@ -159,7 +159,7 @@ namespace ConsoleCardPath
             {
                 if (path.Any(p => p.X == x && p.Y == y) == false)
                 {
-                    path.Add(new CardInfo() { X = x, Y = y, Chr = cardPanel.First(map => map.X == x && map.Y == y).Chr });
+                    path.Add(new CardInfo() { X = x, Y = y, Chr = cardPanel.First(panel => panel.X == x && panel.Y == y).Chr });
                 }
             }
         }
